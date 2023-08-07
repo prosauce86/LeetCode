@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -29,9 +31,28 @@ public class Main {
                 1 <= n <= 1000
                 1 <= nums[i] <= 1000
          */
+
+        System.out.println(Arrays.toString(new Solution().getConcatenation(new int[]{1, 3, 2, 1})));
+        System.out.println();
+        System.out.println(Arrays.toString(new Solution().getConcatenation(new int[]{1, 2, 1})));
     }
 }
 
 class Solution {
-    
+    public int[] getConcatenation(int[] nums) {
+        // [1,3,2,1]
+        int[] array = new int[nums.length * 2];
+        for (int i = 0; i < nums.length; i++) {
+            array[i] = nums[i];
+            array[i + nums.length] = nums[i];
+        }
+        return array;
+    }
+
+//    public int[] getConcatenation(int[] nums) {
+//        int arr[] = new int[nums.length*2];
+//        System.arraycopy(nums,0,arr,0,nums.length);
+//        System.arraycopy(nums,0,arr,nums.length,nums.length);
+//        return arr;
+//    }
 }
