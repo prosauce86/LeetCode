@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -46,12 +50,27 @@ public class Main {
             -100 <= nums[i] <= 100
             nums is sorted in non-decreasing order.
          */
+
+        System.out.println(new Solution().removeDuplicates(new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 5, 6, 8, 8, 8, 9}));
     }
 }
 
 class Solution {
     public int removeDuplicates(int[] nums) {
+        // [0,0,1,1,1,2,2,3,3,4]
+        int leftPointer = 0;
+        int rightPointer = 1;
+        while (rightPointer < nums.length) {
+            if (nums[rightPointer] != nums[leftPointer]) { // compare value at right pointer to value at left
+                leftPointer++;
+                nums[leftPointer] = nums[rightPointer];
+            }
+            rightPointer++;
+        }
 
-        return -1;
+        for (int i = leftPointer + 1; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+        return leftPointer + 1; // returns unique elements in array
     }
 }
